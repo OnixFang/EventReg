@@ -23,8 +23,15 @@
       window.location = '/EventDetails.html';
     }
 
+    function test() {
+      EventData.getAllEvents().$promise.then(function (response) {
+        $log.log(response);
+      });
+    }
+
     $scope.saveEvent = saveEvent;
     $scope.cancelEdit = cancelEdit;
+    $scope.test = test;
   }
   eventsApp.controller('EditEventController', EditEventController);
 }());
