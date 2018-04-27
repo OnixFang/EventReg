@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 
 // Setting the get and save methods for the server
 app.get('/data/event/:id', events.get);
+app.get('/data/event/', events.getAll);
 app.post('/data/event/:id', events.save);
 
 app.get('/data/user/:username', users.get);

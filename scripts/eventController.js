@@ -12,5 +12,12 @@ function save(req, res) {
   res.send(event);
 }
 
+function getAll(req, res) {
+  const events = fs.readdirSync('app/data/event/');
+  res.setHeader('Content-Type', 'application/json');
+  res.send(events);
+}
+
 module.exports.get = get;
 module.exports.save = save;
+module.exports.getAll = getAll;
