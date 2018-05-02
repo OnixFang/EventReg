@@ -1,7 +1,7 @@
 (function EventControllerIife() {
   const eventsApp = angular.module('eventsApp');
 
-  function EventController($scope, EventData, $log) {
+  function EventController($scope, EventData, $log, $cookies) {
     $scope.sortOrder = 'name';
 
     // Failure callback function when getting the event resource from EventData service
@@ -21,15 +21,34 @@
     EventData.getEvent(1).$promise.then(getEventSuccess).catch(getEventError);
 
     function upVoteSession(session) {
-      session.upVoteCount += 1;
+      if (!$cookies.get('upVoteSession' + session.id)) {
+        $cookies.put('upVoteSession' + session.id, true);
+        session.upVoteCount += 1;
+      } else {
+        $log.warn('Session already up voted!!');
+      }
     }
 
     function downVoteSession(session) {
-      session.upVoteCount -= 1;
+      if (!$cookies.get('downVoteSession' + session.id)) {
+        $cookies.put('downVoteSession' + session.id, true);
+        session.upVoteCount -= 1;
+      } else {
+        $log.warn('Session already down voted!!');
+      }
     }
 
     $scope.upVoteSession = upVoteSession;
     $scope.downVoteSession = downVoteSession;
+
+    $scope.clearCookies = function clearCookies() {
+      angular.forEach($cookies, function (v, k) {
+        $cookies.remove(k);
+      });
+      angular.forEach($cookies, function (v, k) {
+        $log.log(k);
+      });
+    }
   }
 
   eventsApp.controller('EventController', EventController);
