@@ -11,14 +11,15 @@
         templateUrl: 'templates/EventList.html',
         controller: 'EventListController',
       })
-      .when('/eventDetails', {
+      .when('/event/:eventId', {
         templateUrl: 'templates/EventDetails.html',
         controller: 'EventController',
       })
       .when('/editProfile', {
         templateUrl: 'templates/EditProfile.html',
         controller: 'EditProfileController',
-      });
+      })
+      .otherwise('/events');
   }
 
   eventsApp.config(routes);
