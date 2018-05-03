@@ -23,8 +23,12 @@
 
     function saveEvent(event) {
       // event.id = getLastEventId() + 1;
-      event.id = 999;
-      return resource.save(event);
+      getAllEvents().$promise.then(function (response) {
+        let events = response;
+        console.log(events);
+      });
+      // event.id = 999;
+      // return resource.save(event);
     }
 
     function getAllEvents() {
