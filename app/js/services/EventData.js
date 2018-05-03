@@ -23,7 +23,7 @@
 
     function saveEvent(event) {
       // event.id = getLastEventId() + 1;
-      getAllEvents().$promise.then(function (response) {
+      resource.query().$promise.then(function (response) {
         let events = response;
         console.log(events);
       });
