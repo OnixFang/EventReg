@@ -4,37 +4,40 @@
   function EventData($resource) {
     // Default resource path for event data
     const resource = $resource('data/event/:id', { id: '@id' });
-    const allEvents = $resource('data/event/');
-    let events;
-    let lastEvent;
-
-    getAllEvents().$promise.then(function (response) {
-      events = response;
-      lastEvent = parseInt(events[events.length - 1].slice(0, -5));
-    });
-
-    function getLastEventId() {
-      return lastEvent;
-    }
+    let events = [];
+    let maxId = 0;
 
     function getEvent(id) {
       return resource.get({ id: id });
     }
 
+    function getAllEvents() {
+      return resource.query();
+    }
+
+    function getAllSuccess(response) {
+      events = response;
+      for (let i = 0; i < events.length; i += 1) {
+        if (events[i].id > maxId) {
+          maxId = events[i].id;
+        }
+      }
+    }
+
     function saveEvent(event) {
-      event.id = getLastEventId() + 1;
+      event.id = maxId + 1;
+      console.log(event);
+      console.log('Max ID: ' + maxId);
+      getAllEvents().$promise.then(getAllSuccess);
       return resource.save(event);
     }
 
-    function getAllEvents() {
-      return allEvents.query();
-    }
+    getAllEvents().$promise.then(getAllSuccess);
 
     return {
       getEvent: getEvent,
       saveEvent: saveEvent,
       getAllEvents: getAllEvents,
-      getLastEventId: getLastEventId,
     };
   }
 
