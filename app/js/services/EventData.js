@@ -7,8 +7,8 @@
     let events = [];
     let maxId = 0;
 
-    function getEvent(id) {
-      return resource.get({ id: id });
+    function getEvent(eventId) {
+      return resource.get({ id: eventId });
     }
 
     function getAllEvents() {
