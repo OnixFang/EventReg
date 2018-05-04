@@ -23,6 +23,9 @@ app.post('/data/event/:id', events.save);
 app.get('/data/user/:username', users.get);
 app.post('/data/user/:username', users.save);
 
+// Default page
+app.get('*', function (req, res) { res.sendFile(rootPath + '/app/index.html'); });
+
 // Setting the app to listen to the specified port
 app.listen(port);
 console.log('Listening on port 8000...');

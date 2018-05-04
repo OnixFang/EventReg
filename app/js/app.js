@@ -1,7 +1,9 @@
 (function EventsAppIife() {
   const eventsApp = angular.module('eventsApp', ['ngSanitize', 'ngResource', 'ngCookies', 'ngRoute']);
 
-  function routes($routeProvider) {
+  function routes($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
+
     $routeProvider
       .when('/newEvent', {
         templateUrl: 'templates/NewEvent.html',
