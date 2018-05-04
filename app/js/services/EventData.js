@@ -7,16 +7,8 @@
     let events = [];
     let maxId = 0;
 
-    // event.id = maxId + 1;
-
     function getEvent(id) {
       return resource.get({ id: id });
-    }
-
-    function saveEvent(event) {
-      event.id = maxId + 1;
-      console.log(event);
-      // return resource.save(event);
     }
 
     function getAllEvents() {
@@ -32,13 +24,20 @@
       }
     }
 
+    function saveEvent(event) {
+      event.id = maxId + 1;
+      console.log(event);
+      console.log('Max ID: ' + maxId);
+      getAllEvents().$promise.then(getAllSuccess);
+      return resource.save(event);
+    }
+
     getAllEvents().$promise.then(getAllSuccess);
 
     return {
       getEvent: getEvent,
       saveEvent: saveEvent,
       getAllEvents: getAllEvents,
-      // getLastEventId: getLastEventId,
     };
   }
 
