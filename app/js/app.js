@@ -12,6 +12,11 @@
       .when('/events', {
         templateUrl: 'templates/EventList.html',
         controller: 'EventListController',
+        resolve: {
+          events: function(EventData) {
+            return EventData.getAllEvents().$promise;
+          }
+        },
       })
       .when('/event/:eventId', {
         templateUrl: 'templates/EventDetails.html',
