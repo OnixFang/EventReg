@@ -1,7 +1,7 @@
 (function EventControllerIife() {
   const eventsApp = angular.module('eventsApp');
 
-  function EventController($scope, EventData, $log, $cookies) {
+  function EventController($scope, EventData, $log, $cookies, $routeParams) {
     $scope.sortOrder = 'name';
 
     // Failure callback function when getting the event resource from EventData service
@@ -18,7 +18,7 @@
     }
 
     // Get the event resource from EventData service
-    EventData.getEvent(1).$promise.then(getEventSuccess).catch(getEventError);
+    EventData.getEvent($routeParams.eventId).$promise.then(getEventSuccess).catch(getEventError);
 
     function upVoteSession(session) {
       if (!$cookies.get('upVoteSession' + session.id)) {

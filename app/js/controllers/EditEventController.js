@@ -20,7 +20,7 @@
     }
 
     function cancelEdit() {
-      window.location = '/EventDetails.html';
+      window.location = 'events';
     }
 
     $scope.saveEvent = saveEvent;

@@ -22,6 +22,10 @@
       const user = UserData.getUser('TestUsername');
       console.log(user);
     };
+
+    $scope.cancelEdit = function cancelEdit() {
+      window.location = 'events';
+    }
   }
   eventsApp.controller('EditProfileController', EditProfileController);
 }());
