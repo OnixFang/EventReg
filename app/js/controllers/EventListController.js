@@ -1,9 +1,9 @@
 (function EventListControllerIife() {
-  const eventsApp = angular.module('eventsApp');
+    const eventsApp = angular.module('eventsApp');
 
-  function EventListController($scope, $route) {
-    $scope.events = $route.current.locals.events;
-  }
+    function EventListController($scope, $route) {
+        $scope.events = $route.current.locals.events;
+    }
 
-  eventsApp.controller('EventListController', EventListController);
+    eventsApp.controller('EventListController', EventListController);
 }());
