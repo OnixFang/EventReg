@@ -9,7 +9,7 @@
             link: function link(scope, element, attrs, controller) {
                 attrs.$observe('email', function (newValue, oldValue) {
                     if (newValue !== oldValue) {
-                        attrs.$set('src', GravatarUrlBuilder.buildGravatarUrl(newValue));
+                        attrs.$set('src', GravatarUrlBuilder.GravatarUrlBuilder(newValue));
                     }
                 });
             },
