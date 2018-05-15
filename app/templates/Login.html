@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <form ng-submit="test();">
+        <div class="row">
+            <div class="span4 well">
+                <label for="userName">User Name:</label>
+                <input focus id="userName" required ng-pattern="/^[-A-Za-z0-9]{2,20}$/" type="text" placeholder="Username" ng-model="login.userName"
+                    class="span4" />
+                <label for="password">Password:</label>
+                <input id="password" required type="password" placeholder="Password" ng-model="login.password" class="span4" />
+                <div class="span4">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

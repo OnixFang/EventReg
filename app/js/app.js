@@ -26,8 +26,9 @@
                 templateUrl: 'templates/EditProfile.html',
                 controller: 'EditProfileController',
             })
-            .when('/about', {
-                template: 'This is the about page. Nothing to see here really.'
+            .when('/login', {
+                templateUrl: 'templates/Login.html',
+                controller: 'LoginController',
             })
             .otherwise('/events');
     }
